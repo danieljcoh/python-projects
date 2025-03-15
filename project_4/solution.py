@@ -36,7 +36,7 @@ while True:
         continue
 
     # Check for a win
-    if check_win(game_board, "X" if gameon else "O"):
+    if check_winner(game_board, "X" if gameon else "O"):
         print(f"Player {1 if gameon else 2} wins!")
         print_gameboard()
         break
