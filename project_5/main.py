@@ -4,6 +4,11 @@
 def ask_for_action():
 
     running = True
+    num_of_tasks = 0
+    try:
+        todo_list_file = open("todo_list.txt", "x")
+    except FileExistsError: 
+        pass # ---> means it already exists
 
     while running:
         print("To-Do List Menu:")
@@ -13,27 +18,36 @@ def ask_for_action():
         print("4: Quit and Save")
         print()
 
-        todo_list_file = open("todo_list.txt", "w+")
         action = input("Enter a choice: ")
         if int(action) == 1:
+            todo_list_file = open("todo_list.txt", "a+")
+            task_to_add = input("Whats the task: ")
+            todo_list_file.write(f"{num_of_tasks}: {task_to_add}\n")
             print("You added a task!")
-            todo_list_file.write("Added Task\n")
+            num_of_tasks += 1
+            todo_list_file.close()
             print()
+
         elif int(action) == 2:
-            print("You displayed your tasks!")
-            todo_list_file.read()
+            todo_list_file = open("todo_list.txt", "r+")
+            for task in todo_list_file.readlines():
+                print(task, end="")
+            todo_list_file.close()
             print()
+
         elif int(action) == 3:
             print("You removed a task")
+            num_of_tasks -= 1
             print()
+
         elif int(action) == 4:
             print("You saved and quit")
+            todo_list_file.close()
             print()
+
             running = False
         else:
             print("That input is not recognized")
             print()
-        todo_list_file.close()
-    
 
 ask_for_action()
