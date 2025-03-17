@@ -1,4 +1,4 @@
-# Project 5 -- CLI Task List(open(), close())
+# Project 5 -- CLI Task List (with open())
 
 ## Objective: 
 - Build a console-based program to manage a to-do list, allowing users to add, remove, and display tasks, with the list saved to and loaded from a text file.
