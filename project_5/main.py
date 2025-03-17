@@ -1,14 +1,18 @@
 
-
-
 def ask_for_action():
 
     running = True
-    num_of_tasks = 0
+    
     try:
-        todo_list_file = open("todo_list.txt", "x")
+        todo_list_file = open("todo_list.txt", "x+")
+        todo_list_file.close()
     except FileExistsError: 
         pass # ---> means it already exists
+
+    # Count existing tasks
+    todo_list_file = open("todo_list.txt", "r")
+    num_of_tasks = len(todo_list_file.readlines())
+    todo_list_file.close()
 
     while running:
         print("To-Do List Menu:")
@@ -36,8 +40,39 @@ def ask_for_action():
             print()
 
         elif int(action) == 3:
-            print("You removed a task")
-            num_of_tasks -= 1
+            todo_list_file = open("todo_list.txt", "r")
+            task_lines = todo_list_file.readlines()
+            todo_list_file.close()
+            
+            # Display tasks
+            for task in task_lines:
+                print(task, end="")
+            
+            task_to_delete = int(input("which task do you want to delete: "))
+            
+            # Validate task number
+            if task_to_delete <= 0 or task_to_delete > len(task_lines):
+                print("The task doesn't exist!")
+            else:
+                # Create new list without deleted task and with updated numbering
+                new_lines = []
+                new_num = 1
+                
+                for i, task in enumerate(task_lines, 1):
+                    if i != task_to_delete:
+                        # Get the task description without the number
+                        task_content = task.split(":", 1)[1].strip()
+                        new_lines.append(f"{new_num}: {task_content}\n")
+                        new_num += 1
+                
+                # Write updated tasks to file
+                todo_list_file = open("todo_list.txt", "w")
+                todo_list_file.writelines(new_lines)
+                todo_list_file.close()
+                
+                print(f"You removed task {task_to_delete}!")
+                num_of_tasks -= 1
+            
             print()
 
         elif int(action) == 4:
