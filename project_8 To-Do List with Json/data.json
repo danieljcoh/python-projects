@@ -1,0 +1,15 @@
+{
+    "name": "Daniel",
+    "age": 31,
+    "job": "SWE",
+    "inventory": {
+        "money": 500,
+        "grass_herbs": 50,
+        "magic_beans": [
+            "red",
+            "black",
+            "blue",
+            "lime"
+        ]
+    }
+}
