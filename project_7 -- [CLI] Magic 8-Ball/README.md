@@ -16,7 +16,7 @@
   - Text editor (e.g., VS Code) or Python IDE (e.g., PyCharm, IDLE)
   - Python interpreter with Tkinter installed (comes with standard Python)
 - **Runtime**: 
-Command Line Terminal
+  - Command Line Terminal
 
 
 ## Logic
