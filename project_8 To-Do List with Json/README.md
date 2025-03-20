@@ -1,0 +1,4 @@
+- using with open()
+- using JSON
+- import json
+- import os
